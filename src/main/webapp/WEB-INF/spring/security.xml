@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                        http://www.springframework.org/schema/security
+                        http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+    <http access-denied-page="/denied.jsf"
+          use-expressions="true">
+
+        <intercept-url pattern="/" access="permitAll"/>
+        <intercept-url pattern="/pages/**" access="hasRole('User') OR hasRole('Admin')"/>
+
+        <form-login login-page="/login.jsf"
+                    login-processing-url="/j_spring_security_check"
+                    authentication-failure-handler-ref="authenticationFailureBean"
+                    default-target-url="/pages/home.jsf"/>
+
+        <anonymous/>
+        <logout logout-url="/logout" invalidate-session="true"/>
+    </http>
+
+    <beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
+
+    <beans:bean id="authenticationFailureBean" class="com.ivashyn.web.security.FailureHandler"/>
+
+    <!-- Declare an authentication-manager to use a custom userDetailsService -->
+    <authentication-manager>
+        <authentication-provider user-service-ref="customUserDetailsService">
+            <password-encoder ref="passwordEncoder"/>
+        </authentication-provider>
+    </authentication-manager>
+
+</beans:beans>

@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3c.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+</head>
+<h:body>
+    <f:event listener="#{loginController.updateMessages()}" type="preRenderView" />
+    <h:form id="loginForm" prependId="false">
+        <h:messages globalOnly="true"/>
+
+        <h:panelGrid columns="3">
+            <h:outputLabel for="j_username" value="#{msg['text.username']}" />
+            <h:inputText id="j_username" required="true" label="username" />
+            <h:message for="j_username" display="text" style="color:red"/>
+
+            <h:outputLabel for="j_password" value="#{msg['text.password']}" />
+            <h:inputSecret id="j_password" label="password" required="true" />
+            <h:message for="j_password" display="text" style="color:red"/>
+
+            <h:outputLabel for="_spring_security_remember_me" value="Remember me: " />
+            <h:selectBooleanCheckbox    id="_spring_security_remember_me" />
+        </h:panelGrid>
+
+        <h:commandButton type="submit" id="login" value="#{msg['link.login']}"
+                         action="#{loginController.doLogin()}" />
+    </h:form>
+</h:body>
+</html>
