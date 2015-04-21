@@ -1,0 +1,11 @@
+# Package Files #
+*.jar
+*.war
+*.ear
+mail.properties
+target/
+
+#Idea files #
+*.iml
+*.idea
+
