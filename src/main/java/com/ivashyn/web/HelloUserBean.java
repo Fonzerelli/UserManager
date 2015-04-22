@@ -16,9 +16,9 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name = "helloUser", eager = true)
 public class HelloUserBean {
 
-    private String username;
-
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloUserBean.class);
+
+    private String username;
 
     public HelloUserBean() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

@@ -11,12 +11,15 @@
           use-expressions="true">
 
         <intercept-url pattern="/" access="permitAll"/>
-        <intercept-url pattern="/pages/**" access="hasRole('User') OR hasRole('Admin')"/>
+        <intercept-url pattern="/denied.jsf" access="permitAll"/>
+        <intercept-url pattern="/templates/**" access="hasRole('User') OR hasRole('Admin')"/>
+        <intercept-url pattern="/pages/user/**" access="hasRole('User') OR hasRole('Admin')"/>
+        <intercept-url pattern="/pages/admin/**" access="hasRole('Admin')"/>
 
         <form-login login-page="/login.jsf"
                     login-processing-url="/j_spring_security_check"
                     authentication-failure-handler-ref="authenticationFailureBean"
-                    default-target-url="/pages/home.jsf"/>
+                    authentication-success-handler-ref="authenticationHandler"/>
 
         <anonymous/>
         <logout logout-url="/logout" invalidate-session="true"/>
@@ -25,6 +28,8 @@
     <beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
 
     <beans:bean id="authenticationFailureBean" class="com.ivashyn.web.security.FailureHandler"/>
+
+    <beans:bean class="com.ivashyn.web.security.AuthenticationHandler" id="authenticationHandler"/>
 
     <!-- Declare an authentication-manager to use a custom userDetailsService -->
     <authentication-manager>

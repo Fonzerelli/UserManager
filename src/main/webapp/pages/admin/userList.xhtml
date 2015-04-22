@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+<ui:define name="content">
+
+        <h:outputText value="User List"/>
+
+    <p:dataTable var="user" value="#{userListWebBean.userList}">
+
+        <p:column headerText="#{msg['user.login']}">
+            <h:outputText value="#{user.login}" />
+        </p:column>
+
+        <p:column headerText="#{msg['user.firstName']}">
+            <h:outputText value="#{user.firstName}" />
+        </p:column>
+
+        <p:column headerText="#{msg['user.lastName']}">
+            <h:outputText value="#{user.lastName}" />
+        </p:column>
+
+    </p:dataTable>
+</ui:define>
+</ui:composition>
