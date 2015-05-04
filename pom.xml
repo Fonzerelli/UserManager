@@ -72,6 +72,12 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${RELEASE_3.2.0}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${RELEASE_3.2.0}</version>
+        </dependency>
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
@@ -108,6 +114,11 @@
             <groupId>org.primefaces.themes</groupId>
             <artifactId>afterwork</artifactId>
             <version>1.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.5.0</version>
         </dependency>
         <!--<dependency>-->
             <!--<groupId>org.slf4j</groupId>-->

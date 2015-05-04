@@ -4,24 +4,53 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/templates/template.xhtml">
-<ui:define name="content">
+    <ui:define name="content">
 
-        <h:outputText value="User List"/>
+        <h:form prependId="false" id="formId">
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 
-    <p:dataTable var="user" value="#{userListWebBean.userList}">
+            <h:panelGrid columns="1" id="emailPanel">
+                <h:panelGrid columns="3">
+                    <h:outputText value="#{msg['message.text']}"/>
+                    <p:inputTextarea id="messageInputId" value="#{userListWebBean.message}" required="true"/>
+                    <p:message for="messageInputId" />
+                </h:panelGrid>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{msg['message.subject']}"/>
+                    <p:inputText id="subjectInputId" value="#{userListWebBean.subject}" required="true"/>
+                    <p:message for="subjectInputId" />
+                </h:panelGrid>
+                <p:dataTable id="userListTableId" var="user" value="#{userListWebBean.userList}"
+                             selection="#{userListWebBean.userListForEmail}" rowKey="#{user.id}"
+                             style="margin-bottom:0">
 
-        <p:column headerText="#{msg['user.login']}">
-            <h:outputText value="#{user.login}" />
-        </p:column>
+                    <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
 
-        <p:column headerText="#{msg['user.firstName']}">
-            <h:outputText value="#{user.firstName}" />
-        </p:column>
+                    <p:column headerText="#{msg['user.login']}">
+                        <h:outputText value="#{user.login}"/>
+                    </p:column>
 
-        <p:column headerText="#{msg['user.lastName']}">
-            <h:outputText value="#{user.lastName}" />
-        </p:column>
+                    <p:column headerText="#{msg['user.firstName']}">
+                        <h:outputText value="#{user.firstName}"/>
+                    </p:column>
 
-    </p:dataTable>
-</ui:define>
+                    <p:column headerText="#{msg['user.lastName']}">
+                        <h:outputText value="#{user.lastName}"/>
+                    </p:column>
+
+                    <p:column headerText="#{msg['user.email']}">
+                        <h:outputText value="#{user.email}"/>
+                    </p:column>
+                    <f:facet name="footer">
+                        <p:commandButton process=":formId:emailPanel"
+                                         actionListener="#{userListWebBean.send()}"
+                                         update=":formId"
+                                         value="#{msg['send.email']}"/>
+
+                    </f:facet>
+                </p:dataTable>
+            </h:panelGrid>
+
+        </h:form>
+    </ui:define>
 </ui:composition>

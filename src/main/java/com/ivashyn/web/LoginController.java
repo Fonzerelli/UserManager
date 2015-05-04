@@ -6,9 +6,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.event.PhaseEvent;
-import javax.faces.event.PhaseId;
-import javax.faces.event.PhaseListener;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -23,7 +20,7 @@ import org.springframework.security.web.WebAttributes;
 @RequestScoped
 public class LoginController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(HelloUserBean.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HelloUserWebBean.class);
 
     /**
      *

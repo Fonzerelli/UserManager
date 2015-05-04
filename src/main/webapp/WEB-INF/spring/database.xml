@@ -22,8 +22,8 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <context:property-placeholder
-            location="classpath:db.properties"/>
+    <!--<context:property-placeholder-->
+            <!--location="classpath:db.properties"/>-->
             <!--classpath:recaptcha.properties,-->
             <!--classpath:mail.properties"-->
 

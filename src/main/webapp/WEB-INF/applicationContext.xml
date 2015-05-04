@@ -14,4 +14,36 @@
 
     <import resource="spring/security.xml"/>
     <import resource="spring/database.xml"/>
+
+    <!--<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">-->
+        <!--<property name="host" value="smtp.ccc.corp"/>-->
+        <!--<property name="port" value="25"/>-->
+        <!--<property name="javaMailProperties"><props>-->
+            <!--<prop key="mail.smtp.sendpartial">true</prop>-->
+        <!--</props></property>-->
+    <!--</bean>-->
+
+
+    <context:property-placeholder
+            location="classpath:db.properties,
+            classpath:mail.properties"/>
+
+    <bean id="mailService" class="com.ivashyn.util.MailService">
+        <property name="mailSender" ref="mailSender"/>
+    </bean>
+
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${SMTP_HOST}" />
+        <property name="port" value="${SMTP_PORT}" />
+        <property name="username" value="${USER_NAME}" />
+        <property name="password" value="${PASSWORD}" />
+
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+            </props>
+        </property>
+    </bean>
 </beans>
