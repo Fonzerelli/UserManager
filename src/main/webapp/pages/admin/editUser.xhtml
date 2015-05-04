@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+    <ui:define name="content">
+
+        <h:form prependId="false" id="formId">
+
+            <h:panelGrid columns="3" id="emailPanel">
+
+                <h:outputText value="#{msg['user.login']}"/>
+                <h:outputText id="userLogin" value="#{editUserWebBean.user.login}"/>
+                <p:message for="userLogin" />
+
+                <h:outputText value="#{msg['user.firstName']}"/>
+                <p:inputText id="userFirstName" value="#{editUserWebBean.user.firstName}" required="true"/>
+                <p:message for="userFirstName" />
+
+                <h:outputText value="#{msg['user.lastName']}"/>
+                <p:inputText id="userLastName" value="#{editUserWebBean.user.lastName}" required="true"/>
+                <p:message for="userLastName" />
+
+                <h:outputText value="#{msg['user.email']}"/>
+                <p:inputText id="userEmail" value="#{editUserWebBean.user.email}"
+                             required="true"
+                             validator="#{editUserWebBean.emailValidator}"/>
+                <p:message for="userEmail" />
+
+                <p:commandButton value="#{msg['button.save']}" action="#{editUserWebBean.save()}" process="emailPanel"/>
+                <h:commandButton value="#{msg['button.cancel']}" action="goToUserList" immediate="true" />
+
+            </h:panelGrid>
+
+        </h:form>
+    </ui:define>
+</ui:composition>

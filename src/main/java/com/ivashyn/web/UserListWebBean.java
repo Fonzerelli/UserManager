@@ -22,10 +22,11 @@ import java.util.List;
  */
 
 @Component
-@Scope("session")
-public class UserListWebBean {
+@Scope("request")
+public class UserListWebBean extends BaseWebBean {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserListWebBean.class);
+    public static final String USER_ID = "userId";
 
     @Autowired
     private UserDao userDao;
@@ -47,6 +48,11 @@ public class UserListWebBean {
         } catch (DaoException e) {
             LOGGER.error("Can't get all users", e);
         }
+    }
+
+    public String editUser(User user) {
+        putIdInSession(USER_ID, user.getId());
+        return "goToUserDetails";
     }
 
     public synchronized void send() {

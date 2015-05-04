@@ -2,6 +2,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
     <title>CustomLoginPage - tutorials.slackspace.de</title>
@@ -12,6 +13,7 @@
     <h:panelGroup id="page" layout="block">
         <h:panelGroup id="header" layout="block" >
             <a href="../../logout">Logout</a>
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
         </h:panelGroup>
         <h:panelGroup id="container" layout="block">
             <h:panelGroup id="content" layout="block">

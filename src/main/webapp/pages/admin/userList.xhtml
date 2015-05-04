@@ -7,7 +7,6 @@
     <ui:define name="content">
 
         <h:form prependId="false" id="formId">
-            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 
             <h:panelGrid columns="1" id="emailPanel">
                 <h:panelGrid columns="3">
@@ -15,7 +14,7 @@
                     <p:inputTextarea id="messageInputId" value="#{userListWebBean.message}" required="true"/>
                     <p:message for="messageInputId" />
                 </h:panelGrid>
-                <h:panelGrid columns="2">
+                <h:panelGrid columns="3">
                     <h:outputText value="#{msg['message.subject']}"/>
                     <p:inputText id="subjectInputId" value="#{userListWebBean.subject}" required="true"/>
                     <p:message for="subjectInputId" />
@@ -41,6 +40,11 @@
                     <p:column headerText="#{msg['user.email']}">
                         <h:outputText value="#{user.email}"/>
                     </p:column>
+
+                    <p:column headerText="#{msg['edit.user']}">
+                        <h:commandLink value="Edit" action="#{userListWebBean.editUser(user)}" immediate="true"/>
+                    </p:column>
+
                     <f:facet name="footer">
                         <p:commandButton process=":formId:emailPanel"
                                          actionListener="#{userListWebBean.send()}"
