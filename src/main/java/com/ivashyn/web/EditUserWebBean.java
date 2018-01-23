@@ -56,7 +56,7 @@ public class EditUserWebBean extends BaseWebBean {
 
     public void emailValidator(FacesContext context, UIComponent component, Object value) throws Exception {
 
-        if (value != null && !value.toString().isEmpty()) {
+        if (value != null && !org.h2.util.StringUtils.isNullOrEmpty(value.toString())) {
 
             if (!matchPattern(value.toString(), EMAIL_PATTERN))
                 throw new ValidatorException(newFacesErrorMessage("validation.message.invalid.email"));

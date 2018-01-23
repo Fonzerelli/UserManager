@@ -20,7 +20,7 @@ import org.springframework.security.web.WebAttributes;
 @RequestScoped
 public class LoginController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(HelloUserWebBean.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
     /**
      *
